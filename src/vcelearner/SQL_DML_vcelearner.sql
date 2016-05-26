@@ -1,35 +1,15 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- * Author:  Teilnehmer
- * Created: 18.05.2016
+ * Author:  Rainer
+ * Created: 26.05.2016
  */
-
--- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
---
--- Host: 127.0.0.1
--- Erstellungszeit: 13. Mai 2016 um 12:31
--- Server-Version: 10.1.13-MariaDB
--- PHP-Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Datenbank: `vcetrainer`
+-- Datenbank: `vcelearner`
 --
--- -----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `lernkarte`
@@ -42,7 +22,7 @@ CREATE TABLE `lernkarte` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- -----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `themenbereich`
@@ -54,7 +34,7 @@ CREATE TABLE `themenbereich` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- -----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `lernkarte2themenbereich`
@@ -69,7 +49,7 @@ CREATE TABLE `lernkarte2themenbereich` (
   FOREIGN KEY (`themenbereich_id`) REFERENCES `themenbereich` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- -----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `potentielleantwort`
@@ -84,7 +64,7 @@ CREATE TABLE `potentielleantwort` (
   FOREIGN KEY (`lernkarte_id`) REFERENCES `lernkarte` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- -----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `benutzer`
@@ -99,7 +79,7 @@ CREATE TABLE `benutzer` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- -----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `lernsitzung`
@@ -114,7 +94,7 @@ CREATE TABLE `lernsitzung` (
   FOREIGN KEY (`benutzer_id`) REFERENCES `benutzer` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- -----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `lernsitzung2potentielleantwort`
@@ -128,7 +108,7 @@ CREATE TABLE `lernsitzung2potentielleantwort` (
   FOREIGN KEY (`potentielleantwort_id`) REFERENCES `potentielleantwort` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- -----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `benutzer2lernkarte`
@@ -143,7 +123,7 @@ CREATE TABLE `benutzer2lernkarte` (
   FOREIGN KEY (`lernkarte_id`) REFERENCES `lernkarte` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- -----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `lernsitzung2lernkarte`
@@ -158,7 +138,4 @@ CREATE TABLE `lernsitzung2lernkarte` (
   FOREIGN KEY (`lernkarte_id`) REFERENCES `lernkarte` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- -----------------------------------------------------------------------------
- /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
- /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
- /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+--------------------------------------------------------------------------------
