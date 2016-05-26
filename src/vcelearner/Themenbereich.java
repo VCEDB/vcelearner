@@ -40,7 +40,7 @@ public class Themenbereich {
     public static Themenbereich getById(int tBid) {
         Themenbereich tB = null;
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vcetrainer", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vcelearner", "root", "");
             String Sql = "SELECT * FROM themenbereich WHERE id=?";
             pst = con.prepareStatement(Sql);
             pst.setInt(1, tBid);
