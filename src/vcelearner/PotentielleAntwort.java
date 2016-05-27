@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class PotentielleAntwort {
 
     // Verbindungsvariablen
-    static Connection con = null;
+ 
     static Statement st = null;
     static PreparedStatement pst = null;
     static ResultSet rst = null;
@@ -69,7 +69,7 @@ public class PotentielleAntwort {
     public static void insert(PotentielleAntwort pA) {
         try {
             // VERBINDUNG AUFBBAUEN:
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vcelearner", "root", "");
+            Connection con = MySQLConnection.getConnection();
             // STATEMENT
             String Sql = "INSERT INTO potentielleantwort VALUES (null, ?, ?, ?)";
             pst = con.prepareStatement(Sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -89,9 +89,6 @@ public class PotentielleAntwort {
 
         } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
                 if (pst != null) {
                     pst.close();
                 }
@@ -108,7 +105,8 @@ public class PotentielleAntwort {
     public static void delete(int lKid) {
 
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vcelearner", "root", "");
+
+            Connection con = MySQLConnection.getConnection();
             String Sql = "DELETE FROM potentielleantwort WHERE lernkarte_id=?";
             pst = con.prepareStatement(Sql);
             pst.setInt(1, lKid);
@@ -119,9 +117,6 @@ public class PotentielleAntwort {
             System.out.println(ex.getMessage());
         } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
                 if (pst != null) {
                     pst.close();
                 }
@@ -175,7 +170,7 @@ public class PotentielleAntwort {
     public static ArrayList<PotentielleAntwort> getAllByLernKarte_id(int lKid) {
         ArrayList<PotentielleAntwort> pAs = new ArrayList<>();
         try {
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vcelearner", "root", "");
+            Connection con = MySQLConnection.getConnection();
             String sql = "SELECT * FROM potentielleantwort WHERE lernkarte_id=?";
             pst = con.prepareStatement(sql);
             pst.setInt(1, lKid);
@@ -197,9 +192,6 @@ public class PotentielleAntwort {
 
         } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
                 if (pst != null) {
                     pst.close();
                 }
