@@ -18,11 +18,36 @@ public class LernenUIMockup extends javax.swing.JFrame {
      */
     public LernenUIMockup() {
         initComponents();
+
+        textAreasAntwort = new javax.swing.JTextArea[]{textAreaAntwortA,
+            textAreaAntwortB, textAreaAntwortC, textAreaAntwortD, textAreaAntwortE,
+            textAreaAntwortF, textAreaAntwortG, textAreaAntwortH};
+        fillWithValues();
     }
 
     public LernenUIMockup(BenutzerSitzung session) {
         this.session = session;
         initComponents();
+
+        textAreasAntwort = new javax.swing.JTextArea[]{textAreaAntwortA,
+            textAreaAntwortB, textAreaAntwortC, textAreaAntwortD, textAreaAntwortE,
+            textAreaAntwortF, textAreaAntwortG, textAreaAntwortH};
+        fillWithValues();
+    }
+
+    public void fillWithValues() {
+        textAreaFrage.setText(session.getAktuelleSitzungsLernKarte().getlK().getFrage());
+
+        labelTitel.setText(session.getTitelString(0));
+       
+        for (int i = 0; i < 8; i++) {
+            if (i < session.getAktuelleSitzungsLernKarte().getlK().getpAs().size()) {
+                textAreasAntwort[i].setText(session.getAktuelleSitzungsLernKarte().getlK().getpAs().get(i).getAntwort());
+            } else {
+                textAreasAntwort[i].setText("");
+            }
+        }
+
     }
 
     /**
@@ -36,7 +61,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
 
         labelTitel = new javax.swing.JLabel();
         paneFrage = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textAreaFrage = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaAntwortA = new javax.swing.JTextArea();
         labelTimer = new javax.swing.JLabel();
@@ -75,9 +100,9 @@ public class LernenUIMockup extends javax.swing.JFrame {
 
         labelTitel.setText("Frage X von Y (ID=Z) Schwierigkeitsgrad=0");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        paneFrage.setViewportView(jTextArea1);
+        textAreaFrage.setColumns(20);
+        textAreaFrage.setRows(5);
+        paneFrage.setViewportView(textAreaFrage);
 
         textAreaAntwortA.setColumns(20);
         textAreaAntwortA.setRows(5);
@@ -90,6 +115,11 @@ public class LernenUIMockup extends javax.swing.JFrame {
         buttonZurueck.setText("<<");
 
         buttonGeheZu.setText("gehe zu:");
+        buttonGeheZu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGeheZuActionPerformed(evt);
+            }
+        });
 
         textFieldGeheZu.setText("ID");
 
@@ -310,6 +340,11 @@ public class LernenUIMockup extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonGeheZuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGeheZuActionPerformed
+     session.geheZu(Integer.parseInt(textFieldGeheZu.getText()));
+     fillWithValues();
+    }//GEN-LAST:event_buttonGeheZuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -345,6 +380,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
         });
     }
 
+    private javax.swing.JTextArea[] textAreasAntwort;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonEnde;
     private javax.swing.JButton buttonGeheZu;
@@ -366,7 +402,6 @@ public class LernenUIMockup extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelTimer;
     private javax.swing.JLabel labelTitel;
     private javax.swing.JScrollPane paneFrage;
@@ -378,6 +413,7 @@ public class LernenUIMockup extends javax.swing.JFrame {
     private javax.swing.JTextArea textAreaAntwortF;
     private javax.swing.JTextArea textAreaAntwortG;
     private javax.swing.JTextArea textAreaAntwortH;
+    private javax.swing.JTextArea textAreaFrage;
     private javax.swing.JTextField textFieldGeheZu;
     private javax.swing.JToggleButton toggleButtonMogeln;
     private javax.swing.JToggleButton toggleButtonWiedervorlage;
