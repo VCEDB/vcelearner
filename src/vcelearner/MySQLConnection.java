@@ -35,4 +35,13 @@ public class MySQLConnection {
         }
         return con;
     }
+    public static void closeConnection(){
+        try {
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

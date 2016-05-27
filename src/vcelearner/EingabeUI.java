@@ -18,7 +18,9 @@ import javax.swing.JTextArea;
  */
 public class EingabeUI extends javax.swing.JFrame {
 
-    final long timeStart = System.nanoTime();
+    // zum Messen der Ausführzeit
+//    final long timeStart = System.nanoTime();
+    
     Sitzung s = new Sitzung();
     private boolean neueLK = false;
 
@@ -26,10 +28,8 @@ public class EingabeUI extends javax.swing.JFrame {
      * Creates new form EingabeUI
      */
     public EingabeUI() {
-        // zum Messen der Ausführzeit
 
         initComponents();
-        //System.out.println(s);
 
         btnAbbruch.setVisible(false);
 
@@ -41,10 +41,10 @@ public class EingabeUI extends javax.swing.JFrame {
         checkBoxesThema = new javax.swing.JCheckBox[]{checkBox1, checkBox2,
             checkBox3, checkBox4, checkBox5, checkBox6, checkBox7};
         fillFields();
-        final long timeEnd = System.nanoTime(); //  
-        
-        jLabel5.setText("Verlaufszeit der Startzeit: " 
-                + (timeEnd - timeStart)/1000000000.0 + " Sek.");
+        // Ausgabe verstrichene Zeit seit Programmstart
+//        final long timeEnd = System.nanoTime(); //         
+//        jLabel5.setText("Verlaufszeit der Startzeit: "
+//                + (timeEnd - timeStart) / 1000000000.0 + " Sek.");
     }
 
     public void fillFields() {
@@ -753,19 +753,11 @@ public class EingabeUI extends javax.swing.JFrame {
         });
     }
 
-        private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
-
-            
-        try {
-            Connection con = MySQLConnection.getConnection();
-            if (con != null) {
-                con.close();
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-    }  
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {
+        // beim Beenden der Anwendung(Fenster schließen) wird die
+        // Verbindung zur Datenbank auch beendet
+        MySQLConnection.closeConnection();
+    }
     private javax.swing.JTextArea[] txtAreasAntwort;
     private javax.swing.JCheckBox[] checkBoxesAntwort;
     private javax.swing.JCheckBox[] checkBoxesThema;
