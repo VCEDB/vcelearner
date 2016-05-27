@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Themenbereich {
 
     // Verbindungsvariablen
-    static Connection con = null;
+    //static Connection con = null;
     static Statement st = null;
     static PreparedStatement pst = null;
     static ResultSet rst = null;
@@ -40,7 +40,9 @@ public class Themenbereich {
     public static Themenbereich getById(int tBid) {
         Themenbereich tB = null;
         try {
-            con = DriverManager.getConnection("jdbc:mysql://192.168.2.3:3306/vcetrainer","Petra","Panke");
+            
+            //con = DriverManager.getConnection("jdbc:mysql://192.168.2.3:3306/vcetrainer","Petra","Panke");
+            Connection con = MySQLConnection.getConnection();
             String Sql = "SELECT * FROM themenbereich WHERE id=?";
             pst = con.prepareStatement(Sql);
             pst.setInt(1, tBid);
@@ -57,9 +59,6 @@ public class Themenbereich {
 
         } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
                 if (pst != null) {
                     pst.close();
                 }

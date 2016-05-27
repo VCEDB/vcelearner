@@ -4,6 +4,7 @@ package vcelearner;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import java.util.ArrayList;
 
 /**
@@ -13,14 +14,29 @@ import java.util.ArrayList;
 public class Sitzung {
 
     private ArrayList<LernKarte> lKs = LernKarte.getAll();
+    //private ArrayList<LernKarte> lKs = new ArrayList<>();
     private int aktuellerLKIndex = 0;
+
+    public Sitzung() {
+//        for (int i = 1; i < 236; i++) {
+//
+//            LernKarte lK = new LernKarte(i, "Wie schnell bin ich", 1);
+//            PotentielleAntwort pA = new PotentielleAntwort(true, "schau mal oben", i);
+//            ArrayList<PotentielleAntwort> pAs = new ArrayList<>();
+//            pAs.add(pA);
+//            Themenbereich tB = new Themenbereich(1, "Java basics");
+//            ArrayList<Themenbereich> tBs = new ArrayList<>();
+//            tBs.add(tB);
+//            lK.setpAs(pAs);
+//            lK.settBs(tBs);
+//            lKs.add(lK);
+//        }
+    }
 
     @Override
     public String toString() {
         return "Sitzung{" + "lKs=" + lKs + ", aktuellerLKIndex=" + aktuellerLKIndex + '}';
     }
-    
-    
 
     public LernKarte getAktuelleLernKarte() {
         return lKs.get(aktuellerLKIndex);

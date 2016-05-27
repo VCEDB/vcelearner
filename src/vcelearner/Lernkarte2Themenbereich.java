@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Lernkarte2Themenbereich {
 
     // Verbindungsvariablen
-    static Connection con = null;
+    //static Connection con = null;
     static Statement st = null;
     static PreparedStatement pst = null;
     static ResultSet rst = null;
@@ -60,7 +60,7 @@ public class Lernkarte2Themenbereich {
 
         try {
             // VERBINDUNG AUFBBAUEN:
-            con = DriverManager.getConnection("jdbc:mysql://192.168.2.3:3306/vcetrainer","Petra","Panke");
+            Connection con = MySQLConnection.getConnection();
             // STATEMENT
             String Sql = "INSERT INTO lernkarte2themenbereich VALUES (null, ?, ?)";
             pst = con.prepareStatement(Sql, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -78,9 +78,6 @@ public class Lernkarte2Themenbereich {
             ex.printStackTrace();
         } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
                 if (pst != null) {
                     pst.close();
                 }
@@ -100,7 +97,7 @@ public class Lernkarte2Themenbereich {
 
         try {
             // VERBINDUNG AUFBBAUEN:
-            con = DriverManager.getConnection("jdbc:mysql://192.168.2.3:3306/vcetrainer","Petra","Panke");
+            Connection con = MySQLConnection.getConnection();
             // PREPARED STATEMENT:
             String Sql = "UPDATE lernkarte2themenbereich SET lernkarte_id=?, themenbereich_id=? WHERE id=?";
             pst = con.prepareStatement(Sql);
@@ -114,9 +111,6 @@ public class Lernkarte2Themenbereich {
             //Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
                 if (pst != null) {
                     pst.close();
                 }
@@ -133,7 +127,7 @@ public class Lernkarte2Themenbereich {
 
         try {
             // VERBINDUNG AUFBAUEN:
-            con = DriverManager.getConnection("jdbc:mysql://192.168.2.3:3306/vcetrainer","Petra","Panke");
+            Connection con = MySQLConnection.getConnection();
             // STATEMENT
             String Sql = "DELETE FROM lernkarte2themenbereich WHERE lernkarte_id=?";
             pst = con.prepareStatement(Sql);
@@ -145,9 +139,6 @@ public class Lernkarte2Themenbereich {
             System.out.println(ex.getMessage());
         } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
                 if (pst != null) {
                     pst.close();
                 }
@@ -161,7 +152,7 @@ public class Lernkarte2Themenbereich {
  public static ArrayList<Lernkarte2Themenbereich> getAllByLernKarte_id(int lKid) {
         ArrayList<Lernkarte2Themenbereich> lK2TBs = new ArrayList<>();
         try {
-            con = DriverManager.getConnection("jdbc:mysql://192.168.2.3:3306/vcetrainer","Petra","Panke");
+            Connection con = MySQLConnection.getConnection();
             String Sql = "SELECT * FROM lernkarte2themenbereich WHERE lernkarte_id=?";
             pst = con.prepareStatement(Sql);
             pst.setInt(1, lKid);
@@ -180,9 +171,6 @@ public class Lernkarte2Themenbereich {
 
         } finally {
             try {
-                if (con != null) {
-                    con.close();
-                }
                 if (pst != null) {
                     pst.close();
                 }
