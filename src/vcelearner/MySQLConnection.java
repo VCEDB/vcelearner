@@ -19,9 +19,9 @@ import java.util.logging.Logger;
  * @author rolfhackel
  */
 public class MySQLConnection {
-    private static final String URL = "jdbc:mysql://192.168.2.3:3306/vcetrainer";
-    private static final String USER = "Petra";
-    private static final String PASSWORD = "Panke";
+    private static final String URL = "jdbc:mysql://localhost:3306/vcelearner";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
 
     private static Connection con = null;
 
