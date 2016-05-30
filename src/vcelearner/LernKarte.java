@@ -23,7 +23,7 @@ public class LernKarte {
     private int id;
     private String frage;
     private int schwierigkeitsGrad;
-    private ArrayList<Themenbereich> tBs = null;
+    private ArrayList<ThemenBereich> tBs = null;
     private ArrayList<PotentielleAntwort> pAs = null;
 
     public LernKarte(int id, String frage, int schwierigkeitsGrad) {
@@ -49,7 +49,7 @@ public class LernKarte {
         return schwierigkeitsGrad;
     }
 
-    public ArrayList<Themenbereich> gettBs() {
+    public ArrayList<ThemenBereich> gettBs() {
         return tBs;
     }
 
@@ -69,7 +69,7 @@ public class LernKarte {
         this.schwierigkeitsGrad = schwierigkeitsGrad;
     }
 
-    public void settBs(ArrayList<Themenbereich> tBs) {
+    public void settBs(ArrayList<ThemenBereich> tBs) {
         this.tBs = tBs;
     }
 
@@ -96,9 +96,9 @@ public class LernKarte {
             }
 
             //Zugehörigkeit zu Themenbereichen speichern
-            for (Themenbereich tB : lK.gettBs()) {
-                Lernkarte2Themenbereich lK2TB = new Lernkarte2Themenbereich(lK.getId(), tB.getId());
-                Lernkarte2Themenbereich.insert(lK2TB);
+            for (ThemenBereich tB : lK.gettBs()) {
+                LernKarte2ThemenBereich lK2TB = new LernKarte2ThemenBereich(lK.getId(), tB.getId());
+                LernKarte2ThemenBereich.insert(lK2TB);
             }
             //Zugehörige PotentielleAntworten speichern
             for (PotentielleAntwort pA : lK.getpAs()) {
@@ -128,7 +128,7 @@ public class LernKarte {
     public static void delete(LernKarte lK) {
 
         try {
-            Lernkarte2Themenbereich.delete(lK.getId());
+            LernKarte2ThemenBereich.delete(lK.getId());
             PotentielleAntwort.delete(lK.getId());
 
             Connection con = MySQLConnection.getConnection();
@@ -167,11 +167,11 @@ public class LernKarte {
 
                 lK.setpAs(PotentielleAntwort.getAllByLernKarte_id(lK.getId()));
 
-                ArrayList<Lernkarte2Themenbereich> lK2TBs = Lernkarte2Themenbereich.getAllByLernKarte_id(lK.getId());
+                ArrayList<LernKarte2ThemenBereich> lK2TBs = LernKarte2ThemenBereich.getAllByLernKarte_id(lK.getId());
 
-                ArrayList<Themenbereich> tBs = new ArrayList<>();
-                for (Lernkarte2Themenbereich lK2TB : lK2TBs) {
-                    tBs.add(Themenbereich.getById(lK2TB.getThemenBereich_id()));
+                ArrayList<ThemenBereich> tBs = new ArrayList<>();
+                for (LernKarte2ThemenBereich lK2TB : lK2TBs) {
+                    tBs.add(ThemenBereich.getById(lK2TB.getThemenBereich_id()));
 
                 }
                 lK.settBs(tBs);
@@ -215,11 +215,11 @@ public class LernKarte {
 
                 lK.setpAs(PotentielleAntwort.getAllByLernKarte_id(lK.getId()));
 
-                ArrayList<Lernkarte2Themenbereich> lK2TBs = Lernkarte2Themenbereich.getAllByLernKarte_id(lK.getId());
+                ArrayList<LernKarte2ThemenBereich> lK2TBs = LernKarte2ThemenBereich.getAllByLernKarte_id(lK.getId());
 
-                ArrayList<Themenbereich> tBs = new ArrayList<>();
-                for (Lernkarte2Themenbereich lK2TB : lK2TBs) {
-                    tBs.add(Themenbereich.getById(lK2TB.getThemenBereich_id()));
+                ArrayList<ThemenBereich> tBs = new ArrayList<>();
+                for (LernKarte2ThemenBereich lK2TB : lK2TBs) {
+                    tBs.add(ThemenBereich.getById(lK2TB.getThemenBereich_id()));
 
                 }
                 lK.settBs(tBs);
@@ -260,11 +260,11 @@ public class LernKarte {
 
             pst.executeUpdate();
 
-            Lernkarte2Themenbereich.delete(lK.getId());
+            LernKarte2ThemenBereich.delete(lK.getId());
 
-            for (Themenbereich tB : lK.gettBs()) {
-                Lernkarte2Themenbereich lK2TB = new Lernkarte2Themenbereich(lK.getId(), tB.getId());
-                Lernkarte2Themenbereich.insert(lK2TB);
+            for (ThemenBereich tB : lK.gettBs()) {
+                LernKarte2ThemenBereich lK2TB = new LernKarte2ThemenBereich(lK.getId(), tB.getId());
+                LernKarte2ThemenBereich.insert(lK2TB);
             }
             PotentielleAntwort.delete(lK.getId());
 

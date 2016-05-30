@@ -68,7 +68,7 @@ public class EingabeUI extends javax.swing.JFrame {
         for (int i = 0; i < 7; i++) {
             checkBoxesThema[i].setSelected(false);
         }
-        for (Themenbereich tB : s.getAktuelleLernKarte().gettBs()) {
+        for (ThemenBereich tB : s.getAktuelleLernKarte().gettBs()) {
             checkBoxesThema[tB.getId() - 1].setSelected(true);
         }
     }
@@ -693,10 +693,10 @@ public class EingabeUI extends javax.swing.JFrame {
         }
         lK.setpAs(pAs);
 
-        ArrayList<Themenbereich> tBs = new ArrayList<>();
+        ArrayList<ThemenBereich> tBs = new ArrayList<>();
         for (int i = 0; i < checkBoxesThema.length; i++) {
             if (checkBoxesThema[i].isSelected()) {
-                Themenbereich tb = new Themenbereich(i + 1, checkBoxesThema[i].getText());
+                ThemenBereich tb = new ThemenBereich(i + 1, checkBoxesThema[i].getText());
                 tBs.add(tb);
             }
         }
